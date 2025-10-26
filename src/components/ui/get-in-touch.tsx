@@ -188,7 +188,7 @@ const GetInTouchHeader = () => {
   }, []);
 
   return (
-    <div ref={headerRef} className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
+    <div ref={headerRef} className="absolute top-12 left-1/2 transform -translate-x-1/2 z-10">
       <motion.h2 
         ref={textRef}
         className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-black leading-none text-center ${jetBrainsMono.className}`}
@@ -227,8 +227,8 @@ const GetInTouch = () => {
       <GetInTouchHeader />
       
       {/* Main content area */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl px-10 z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl px-10 z-10 mt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           {/* Contact Form */}
           <div>
             <ContactForm />

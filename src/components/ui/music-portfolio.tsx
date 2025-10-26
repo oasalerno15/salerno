@@ -37,7 +37,7 @@ const WebDesignHeader = () => {
   const headline = "WEB DESIGN";
   
   return (
-    <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-6xl">
+    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-6xl">
       <div className="overflow-hidden text-center">
         <h2 className={`text-2xl md:text-3xl lg:text-4xl xl:text-5xl tracking-wide text-slate-900 leading-[0.85] select-none font-bold whitespace-nowrap ${jetBrainsMono.className}`}>
           {headline.split("").map((char, i) => (
