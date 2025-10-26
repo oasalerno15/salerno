@@ -1,103 +1,104 @@
-import Image from "next/image";
+import { LivingFluidHero } from "@/components/ui/living-fluid-hero";
+import MusicPortfolio from "@/components/ui/music-portfolio";
+import AboutMe from "@/components/ui/about-me";
+import GetInTouch from "@/components/ui/get-in-touch";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const projectsData = [
+    {
+      id: 1,
+      artist: "JEWELRY PORTFOLIO",
+      album: "ASHER DELMEN",
+      category: "SINGLE",
+      label: "DESIGNED BY OSCAR",
+      year: "2025",
+      image: "https://i.pinimg.com/736x/9f/10/23/9f1023c3785097536e164d3ef7ac9fb6.jpg",
+      description: "Digital showcase for luxury jewelry – minimal, elegant design balancing visual storytelling with usability.",
+      url: "https://www.asherdelman.com/"
+    },
+    {
+      id: 2,
+      artist: "NYC TENNIS CLUB",
+      album: "PEDRO PURCHESE",
+      category: "SINGLE",
+      label: "DESIGNED BY OSCAR",
+      year: "2025",
+      image: "https://i.pinimg.com/736x/bf/f0/4d/bff04d662db206377de801ec0bc42804.jpg",
+      description: "Modern digital presence capturing urban tennis culture with clean lines and dynamic layouts.",
+      url: "https://www.thenyctennisclub.com/"
+    },
+    {
+      id: 3,
+      artist: "COURT CYCLE",
+      album: "ALI HAMDARD",
+      category: "SINGLE",
+      label: "DESIGNED BY OSCAR",
+      year: "2025",
+      image: "https://i.pinimg.com/736x/90/cf/ec/90cfec4c5230978dba450909c676fd42.jpg",
+      description: "Digital platform embodying movement and rhythm with fluid navigation and interactive elements.",
+      url: "https://www.courtcycle.net/"
+    },
+    {
+      id: 4,
+      artist: "THE INTEGRATOR PROJECT",
+      album: "LUCA VOLPI",
+      category: "SINGLE",
+      label: "DESIGNED BY OSCAR SALERNO",
+      year: "2025",
+      image: "https://i.pinimg.com/736x/8a/9d/06/8a9d06bccabc53834aa311fb3beb75f6.jpg",
+      description: "Educational platform advancing learning for all through real experience and real impact in tutoring.",
+      url: "https://www.integratorproject.org/"
+    },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const config = {
+    timeZone: "America/New_York",
+    timeUpdateInterval: 1000,
+    idleDelay: 4000,
+    debounceDelay: 100
+  };
+
+  const socialLinks = {
+    spotify: "https://spotify.com/your-profile",
+    email: "mailto:your-email@example.com",
+    x: "https://x.com/your-handle"
+  };
+
+  const location = {
+    latitude: "40.7128° N",
+    longitude: "74.0060° W",
+    display: true
+  };
+
+  const callbacks = {};
+
+  return (
+    <>
+      {/* First section: OSCAR with fluid background */}
+      <div className="h-screen">
+        <LivingFluidHero />
+      </div>
+
+      {/* Second section: Music Portfolio on white background with spacing */}
+      <div className="h-screen bg-white mt-32">
+        <MusicPortfolio
+          PROJECTS_DATA={projectsData}
+          CONFIG={config}
+          SOCIAL_LINKS={socialLinks}
+          LOCATION={location}
+          CALLBACKS={callbacks}
+        />
+      </div>
+
+      {/* Third section: About Me on white background with spacing */}
+      <div className="h-screen bg-white mt-32 overflow-visible">
+        <AboutMe />
+      </div>
+
+      {/* Fourth section: Get in Touch on white background with spacing */}
+      <div className="h-screen bg-white mt-32 overflow-visible">
+        <GetInTouch />
+      </div>
+    </>
   );
 }

@@ -1,0 +1,201 @@
+"use client";
+
+import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+import { motion } from 'framer-motion';
+import { JetBrains_Mono } from 'next/font/google';
+import SimpleStickerPeel from '../SimpleStickerPeel';
+import StickerEditor from './sticker-editor';
+
+// Configure JetBrains Mono font
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-jetbrains-mono',
+});
+
+// Register GSAP plugin
+gsap.registerPlugin(ScrambleTextPlugin);
+
+// About Me Header Component
+const AboutMeHeader = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (textRef.current) {
+      gsap.fromTo(textRef.current, 
+        { 
+          opacity: 0,
+          y: 50 
+        },
+        { 
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          delay: 0.3
+        }
+      );
+    }
+  }, []);
+
+  return (
+    <div ref={headerRef} className="absolute top-20 right-50 z-10">
+      <motion.h2 
+        ref={textRef}
+        className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-wide text-black leading-none ${jetBrainsMono.className}`}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+      >
+        ABOUT ME
+      </motion.h2>
+    </div>
+  );
+};
+
+// About Me Content Component
+const AboutMeContent = () => {
+  return (
+    <div className="absolute top-1/2 right-50 transform -translate-y-1/2 max-w-xl z-10">
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
+        className={`text-black ${jetBrainsMono.className}`}
+      >
+        <div className="space-y-8">
+          <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+            Hi, I'm Oscar Salerno, a web designer passionate about crafting minimal, 
+            interactive websites that tell compelling stories through thoughtful design.
+          </p>
+          
+          <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+            I specialize in creating digital experiences that balance visual beauty 
+            with functional simplicity, helping brands connect with their audiences 
+            through clean, modern web design.
+          </p>
+          
+          <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+            Based in New York, I work with clients worldwide to bring their 
+            digital visions to life through carefully crafted user experiences.
+          </p>
+          
+          <div className="pt-6">
+            <p className="text-base md:text-lg lg:text-xl text-gray-600 uppercase tracking-wide">
+              Available for freelance projects
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+// Sticker Components for left side
+const AboutMeStickers = ({ stickerPositions, onEditStickers }: { stickerPositions: any[], onEditStickers: () => void }) => {
+  const stickers = stickerPositions.length > 0 ? stickerPositions : [
+    { src: "/sticker1.png", rotate: 15, x: 20, y: 50 },
+    { src: "/sticker2.png", rotate: -10, x: 150, y: 150 },
+    { src: "/sticker3.png", rotate: 20, x: 50, y: 300 },
+    { src: "/sticker4.png", rotate: -5, x: 200, y: 250 },
+    { src: "/sticker5.png", rotate: 25, x: 30, y: 500 },
+    { src: "/sticker6.png", rotate: -15, x: 180, y: 400 },
+    { src: "/sticker7.png", rotate: 10, x: 350, y: 80 },
+    { src: "/sticker8.png", rotate: -20, x: 300, y: 200 },
+    { src: "/sticker9.png", rotate: 5, x: 400, y: 350 },
+    { src: "/sticker10.png", rotate: -12, x: 320, y: 450 },
+    { src: "/sticker11.png", rotate: 18, x: 450, y: 250 },
+    { src: "/sticker12.png", rotate: 8, x: 100, y: 600 },
+    { src: "/sticker13.png", rotate: -25, x: 500, y: 500 }
+  ];
+
+  return (
+    <div className="absolute left-0 top-0 w-full h-full z-20" style={{ 
+      overflow: 'visible' 
+    }}>
+      {stickers.map((sticker, index) => (
+        <div
+          key={index}
+          className="absolute"
+          style={{
+            left: sticker.x,
+            top: sticker.y,
+            width: '280px',
+            height: '350px',
+            overflow: 'visible'
+          }}
+        >
+          <SimpleStickerPeel
+            imageSrc={sticker.src}
+            width={280}
+            rotate={sticker.rotate}
+            peelBackHoverPct={20}
+            peelBackActivePct={40}
+            shadowIntensity={0.8}
+            lightingIntensity={0.12}
+          />
+        </div>
+      ))}
+      
+    </div>
+  );
+};
+
+// Corner Elements for About Me section
+const AboutMeCornerElements = () => {
+  return (
+    <aside className="corner-elements">
+      <div className="corner-item top-left">
+        OSCAR SALERNO PRODUCTIONS
+      </div>
+    </aside>
+  );
+};
+
+// Main About Me Component
+const AboutMe = () => {
+  const [showEditor, setShowEditor] = useState(false);
+  const [stickerPositions, setStickerPositions] = useState<any[]>([]);
+
+  const handleEditStickers = () => {
+    setShowEditor(true);
+  };
+
+  const handleSaveLayout = (positions: any[]) => {
+    setStickerPositions(positions);
+    setShowEditor(false);
+    // Here you could also save to localStorage or send to a backend
+    localStorage.setItem('stickerPositions', JSON.stringify(positions));
+  };
+
+  const handleCancelEditor = () => {
+    setShowEditor(false);
+  };
+
+  // Load saved positions on component mount
+  useEffect(() => {
+    const saved = localStorage.getItem('stickerPositions');
+    if (saved) {
+      setStickerPositions(JSON.parse(saved));
+    }
+  }, []);
+
+  if (showEditor) {
+    return <StickerEditor onSaveLayout={handleSaveLayout} onCancel={handleCancelEditor} />;
+  }
+
+  return (
+    <div className="relative w-full h-full overflow-visible">
+      <AboutMeHeader />
+      <AboutMeContent />
+      <AboutMeStickers stickerPositions={stickerPositions} onEditStickers={handleEditStickers} />
+      <AboutMeCornerElements />
+    </div>
+  );
+};
+
+export default AboutMe;
