@@ -19,7 +19,7 @@ const jetBrainsMono = JetBrains_Mono({
 gsap.registerPlugin(ScrambleTextPlugin);
 
 // Web Design Header Component
-const WebDesignHeader = () => {
+const WebDesignHeader = ({ xPosition }: { xPosition: number }) => {
   const textControls = useAnimation();
   
   useEffect(() => {
@@ -37,7 +37,10 @@ const WebDesignHeader = () => {
   const headline = "WEB DESIGN";
   
   return (
-    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20 w-full">
+    <div 
+      className="absolute top-8 transform -translate-x-1/2 z-20 w-full"
+      style={{ left: `${xPosition}%` }}
+    >
       <div className="overflow-hidden text-center">
         <h2 className={`text-2xl md:text-3xl lg:text-4xl xl:text-5xl tracking-wide text-slate-900 leading-[0.85] select-none font-bold whitespace-nowrap ${jetBrainsMono.className}`}>
           {headline.split("").map((char, i) => (
@@ -214,6 +217,7 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isIdle, setIsIdle] = useState(true);
+  const [xPosition, setXPosition] = useState(50); // Default 50% (centered)
   // Removed hoveredProject state - no longer using hover images
   
   const backgroundRef = useRef(null);
@@ -222,6 +226,9 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
   const idleAnimationRef = useRef<gsap.core.Timeline | null>(null);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
   const projectItemsRef = useRef<(HTMLLIElement | null)[]>([]);
+  
+  // Always show slider for positioning control
+  const showSlider = true;
 
   // Preload images
   useEffect(() => {
@@ -354,13 +361,48 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
 
   return (
     <>
-      {/* Hover images removed per user request */}
+      {/* X-axis Position Slider for WEB DESIGN section */}
+      {showSlider && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          zIndex: 9999,
+          background: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          minWidth: '350px',
+          border: '2px solid #8A2BE2'
+        }}>
+          <div style={{ marginBottom: '10px', fontWeight: 'bold', fontSize: '16px', color: '#8A2BE2' }}>
+            WEB DESIGN X-Position Control
+          </div>
+          <div style={{ fontSize: '12px', color: '#666', marginBottom: '12px' }}>
+            Controls: WEB DESIGN title + project list
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <input
+              type="range"
+              min="1"
+              max="200"
+              value={xPosition}
+              onChange={(e) => setXPosition(Number(e.target.value))}
+              style={{ flex: 1, cursor: 'pointer' }}
+            />
+            <span style={{ minWidth: '60px', fontSize: '16px', fontWeight: 'bold' }}>{xPosition}%</span>
+          </div>
+          <div style={{ fontSize: '12px', color: '#666', marginTop: '8px' }}>
+            Current: left: {xPosition}%
+          </div>
+        </div>
+      )}
 
       <div 
         className="container"
       >
         {/* Web Design Header */}
-        <WebDesignHeader />
+        <WebDesignHeader xPosition={xPosition} />
         
         <main 
           ref={containerRef}
@@ -369,7 +411,11 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
         >
           <h1 className="sr-only">Music Portfolio</h1>
           
-          <ul className="project-list" role="list">
+          <ul 
+            className="project-list" 
+            role="list"
+            style={{ left: `${xPosition}%` }}
+          >
             {PROJECTS_DATA.map((project, index) => (
               <ProjectItem
                 key={project.id}
