@@ -43,7 +43,7 @@ const AboutMeHeader = () => {
   }, []);
 
   return (
-    <div ref={headerRef} className="absolute top-12 right-1/2 transform translate-x-1/2 z-10">
+    <div ref={headerRef} className="absolute top-12 right-12 z-10">
       <motion.h2 
         ref={textRef}
         className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-black leading-none text-right ${jetBrainsMono.className}`}
@@ -60,7 +60,7 @@ const AboutMeHeader = () => {
 // About Me Content Component
 const AboutMeContent = () => {
   return (
-    <div className="absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2 max-w-xl z-10 pr-16">
+    <div className="absolute top-1/2 right-12 transform -translate-y-1/2 max-w-xl z-10">
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
