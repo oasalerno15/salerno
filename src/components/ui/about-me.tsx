@@ -101,23 +101,24 @@ interface StickerPosition {
   rotate: number;
   x: number;
   y: number;
+  width: number;
 }
 
 const AboutMeStickers = ({ stickerPositions }: { stickerPositions: StickerPosition[] }) => {
   const stickers = stickerPositions.length > 0 ? stickerPositions : [
-    { src: "/sticker1.png", rotate: 15, x: 80, y: 100 },
-    { src: "/sticker2.png", rotate: -10, x: 240, y: 220 },
-    { src: "/sticker3.png", rotate: 20, x: 120, y: 380 },
-    { src: "/sticker4.png", rotate: -5, x: 320, y: 320 },
-    { src: "/sticker5.png", rotate: 25, x: 60, y: 560 },
-    { src: "/sticker6.png", rotate: -15, x: 280, y: 500 },
-    { src: "/sticker7.png", rotate: 10, x: 440, y: 120 },
-    { src: "/sticker8.png", rotate: -20, x: 400, y: 280 },
-    { src: "/sticker9.png", rotate: 5, x: 520, y: 420 },
-    { src: "/sticker10.png", rotate: -12, x: 460, y: 560 },
-    { src: "/sticker11.png", rotate: 18, x: 560, y: 240 },
-    { src: "/sticker12.png", rotate: 8, x: 200, y: 680 },
-    { src: "/sticker13.png", rotate: -25, x: 380, y: 640 }
+    { src: "/sticker1.png", rotate: 15, x: 80, y: 100, width: 200 },
+    { src: "/sticker2.png", rotate: -10, x: 240, y: 220, width: 200 },
+    { src: "/sticker3.png", rotate: 20, x: 120, y: 380, width: 200 },
+    { src: "/sticker4.png", rotate: -5, x: 320, y: 320, width: 200 },
+    { src: "/sticker5.png", rotate: 25, x: 60, y: 560, width: 200 },
+    { src: "/sticker6.png", rotate: -15, x: 280, y: 500, width: 200 },
+    { src: "/sticker7.png", rotate: 10, x: 440, y: 120, width: 200 },
+    { src: "/sticker8.png", rotate: -20, x: 400, y: 280, width: 200 },
+    { src: "/sticker9.png", rotate: 5, x: 520, y: 420, width: 200 },
+    { src: "/sticker10.png", rotate: -12, x: 460, y: 560, width: 200 },
+    { src: "/sticker11.png", rotate: 18, x: 560, y: 240, width: 200 },
+    { src: "/sticker12.png", rotate: 8, x: 200, y: 680, width: 200 },
+    { src: "/sticker13.png", rotate: -25, x: 380, y: 640, width: 200 }
   ];
 
   return (
@@ -133,14 +134,14 @@ const AboutMeStickers = ({ stickerPositions }: { stickerPositions: StickerPositi
           style={{
             left: sticker.x,
             top: sticker.y,
-            width: '200px',
-            height: '250px',
+            width: `${sticker.width}px`,
+            height: `${sticker.width * 1.25}px`,
             overflow: 'visible'
           }}
         >
           <SimpleStickerPeel
             imageSrc={sticker.src}
-            width={200}
+            width={sticker.width}
             rotate={sticker.rotate}
             peelBackHoverPct={20}
             peelBackActivePct={40}
@@ -188,12 +189,28 @@ const AboutMe = () => {
   }
 
   return (
-    <div className="relative w-full h-full overflow-visible">
-      <AboutMeHeader />
-      <AboutMeContent />
-      <AboutMeStickers stickerPositions={stickerPositions} />
-      <AboutMeCornerElements />
-    </div>
+    <>
+      {/* Edit Stickers Button */}
+      <button
+        onClick={() => setShowEditor(true)}
+        className={`fixed bottom-20 right-4 z-50 px-6 py-3 bg-purple-600 text-white hover:bg-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl ${jetBrainsMono.className}`}
+        style={{
+          borderRadius: '8px',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          letterSpacing: '0.5px'
+        }}
+      >
+        EDIT STICKERS 🎨
+      </button>
+
+      <div className="relative w-full h-full overflow-visible">
+        <AboutMeHeader />
+        <AboutMeContent />
+        <AboutMeStickers stickerPositions={stickerPositions} />
+        <AboutMeCornerElements />
+      </div>
+    </>
   );
 };
 

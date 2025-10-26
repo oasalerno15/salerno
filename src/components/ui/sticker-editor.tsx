@@ -17,6 +17,7 @@ interface StickerPosition {
   x: number;
   y: number;
   rotate: number;
+  width: number;
 }
 
 interface StickerEditorProps {
@@ -26,23 +27,24 @@ interface StickerEditorProps {
 
 const StickerEditor: React.FC<StickerEditorProps> = ({ onSaveLayout, onCancel }) => {
   const [stickers, setStickers] = useState<StickerPosition[]>([
-    { id: 'sticker1', src: '/sticker1.png', x: 20, y: 50, rotate: 15 },
-    { id: 'sticker2', src: '/sticker2.png', x: 150, y: 150, rotate: -10 },
-    { id: 'sticker3', src: '/sticker3.png', x: 50, y: 300, rotate: 20 },
-    { id: 'sticker4', src: '/sticker4.png', x: 200, y: 250, rotate: -5 },
-    { id: 'sticker5', src: '/sticker5.png', x: 30, y: 500, rotate: 25 },
-    { id: 'sticker6', src: '/sticker6.png', x: 180, y: 400, rotate: -15 },
-    { id: 'sticker7', src: '/sticker7.png', x: 350, y: 80, rotate: 10 },
-    { id: 'sticker8', src: '/sticker8.png', x: 300, y: 200, rotate: -20 },
-    { id: 'sticker9', src: '/sticker9.png', x: 400, y: 350, rotate: 5 },
-    { id: 'sticker10', src: '/sticker10.png', x: 320, y: 450, rotate: -12 },
-    { id: 'sticker11', src: '/sticker11.png', x: 450, y: 250, rotate: 18 },
-    { id: 'sticker12', src: '/sticker12.png', x: 100, y: 600, rotate: 8 },
-    { id: 'sticker13', src: '/sticker13.png', x: 500, y: 500, rotate: -25 }
+    { id: 'sticker1', src: '/sticker1.png', x: 80, y: 100, rotate: 15, width: 200 },
+    { id: 'sticker2', src: '/sticker2.png', x: 240, y: 220, rotate: -10, width: 200 },
+    { id: 'sticker3', src: '/sticker3.png', x: 120, y: 380, rotate: 20, width: 200 },
+    { id: 'sticker4', src: '/sticker4.png', x: 320, y: 320, rotate: -5, width: 200 },
+    { id: 'sticker5', src: '/sticker5.png', x: 60, y: 560, rotate: 25, width: 200 },
+    { id: 'sticker6', src: '/sticker6.png', x: 280, y: 500, rotate: -15, width: 200 },
+    { id: 'sticker7', src: '/sticker7.png', x: 440, y: 120, rotate: 10, width: 200 },
+    { id: 'sticker8', src: '/sticker8.png', x: 400, y: 280, rotate: -20, width: 200 },
+    { id: 'sticker9', src: '/sticker9.png', x: 520, y: 420, rotate: 5, width: 200 },
+    { id: 'sticker10', src: '/sticker10.png', x: 460, y: 560, rotate: -12, width: 200 },
+    { id: 'sticker11', src: '/sticker11.png', x: 560, y: 240, rotate: 18, width: 200 },
+    { id: 'sticker12', src: '/sticker12.png', x: 200, y: 680, rotate: 8, width: 200 },
+    { id: 'sticker13', src: '/sticker13.png', x: 380, y: 640, rotate: -25, width: 200 }
   ]);
 
   const [draggedSticker, setDraggedSticker] = useState<string | null>(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [selectedSticker, setSelectedSticker] = useState<string | null>(null);
 
   const handleMouseDown = (e: React.MouseEvent, stickerId: string) => {
     e.preventDefault();
@@ -78,22 +80,31 @@ const StickerEditor: React.FC<StickerEditorProps> = ({ onSaveLayout, onCancel })
     onSaveLayout(stickers);
   };
 
+  const handleSizeChange = (stickerId: string, newWidth: number) => {
+    setStickers(prev => prev.map(sticker => 
+      sticker.id === stickerId 
+        ? { ...sticker, width: Math.max(100, Math.min(400, newWidth)) }
+        : sticker
+    ));
+  };
+
   const handleReset = () => {
     setStickers([
-      { id: 'sticker1', src: '/sticker1.png', x: 20, y: 50, rotate: 15 },
-      { id: 'sticker2', src: '/sticker2.png', x: 150, y: 150, rotate: -10 },
-      { id: 'sticker3', src: '/sticker3.png', x: 50, y: 300, rotate: 20 },
-      { id: 'sticker4', src: '/sticker4.png', x: 200, y: 250, rotate: -5 },
-      { id: 'sticker5', src: '/sticker5.png', x: 30, y: 500, rotate: 25 },
-      { id: 'sticker6', src: '/sticker6.png', x: 180, y: 400, rotate: -15 },
-      { id: 'sticker7', src: '/sticker7.png', x: 350, y: 80, rotate: 10 },
-      { id: 'sticker8', src: '/sticker8.png', x: 300, y: 200, rotate: -20 },
-      { id: 'sticker9', src: '/sticker9.png', x: 400, y: 350, rotate: 5 },
-      { id: 'sticker10', src: '/sticker10.png', x: 320, y: 450, rotate: -12 },
-      { id: 'sticker11', src: '/sticker11.png', x: 450, y: 250, rotate: 18 },
-      { id: 'sticker12', src: '/sticker12.png', x: 100, y: 600, rotate: 8 },
-      { id: 'sticker13', src: '/sticker13.png', x: 500, y: 500, rotate: -25 }
+      { id: 'sticker1', src: '/sticker1.png', x: 80, y: 100, rotate: 15, width: 200 },
+      { id: 'sticker2', src: '/sticker2.png', x: 240, y: 220, rotate: -10, width: 200 },
+      { id: 'sticker3', src: '/sticker3.png', x: 120, y: 380, rotate: 20, width: 200 },
+      { id: 'sticker4', src: '/sticker4.png', x: 320, y: 320, rotate: -5, width: 200 },
+      { id: 'sticker5', src: '/sticker5.png', x: 60, y: 560, rotate: 25, width: 200 },
+      { id: 'sticker6', src: '/sticker6.png', x: 280, y: 500, rotate: -15, width: 200 },
+      { id: 'sticker7', src: '/sticker7.png', x: 440, y: 120, rotate: 10, width: 200 },
+      { id: 'sticker8', src: '/sticker8.png', x: 400, y: 280, rotate: -20, width: 200 },
+      { id: 'sticker9', src: '/sticker9.png', x: 520, y: 420, rotate: 5, width: 200 },
+      { id: 'sticker10', src: '/sticker10.png', x: 460, y: 560, rotate: -12, width: 200 },
+      { id: 'sticker11', src: '/sticker11.png', x: 560, y: 240, rotate: 18, width: 200 },
+      { id: 'sticker12', src: '/sticker12.png', x: 200, y: 680, rotate: 8, width: 200 },
+      { id: 'sticker13', src: '/sticker13.png', x: 380, y: 640, rotate: -25, width: 200 }
     ]);
+    setSelectedSticker(null);
   };
 
   return (
@@ -132,30 +143,81 @@ const StickerEditor: React.FC<StickerEditorProps> = ({ onSaveLayout, onCancel })
       </div>
 
       {/* Instructions */}
-      <div className="absolute top-20 left-4 bg-gray-100 p-4 rounded z-10">
-        <p className={`text-sm ${jetBrainsMono.className}`}>
-          Drag stickers to position them. Click and drag any sticker to move it around the page.
+      <div className="absolute top-20 left-4 bg-purple-600 text-white p-4 rounded z-10 shadow-lg max-w-xs">
+        <p className={`text-sm font-bold ${jetBrainsMono.className}`}>
+          🎨 DRAG STICKERS TO POSITION THEM
+        </p>
+        <p className={`text-xs mt-2 ${jetBrainsMono.className}`}>
+          Click &amp; drag any sticker. Coordinates shown above each sticker.
+        </p>
+        <p className={`text-xs mt-1 ${jetBrainsMono.className}`}>
+          Click a sticker to select it and use the size slider below!
+        </p>
+        <p className={`text-xs mt-1 ${jetBrainsMono.className}`}>
+          Click SAVE LAYOUT when done to apply your changes!
         </p>
       </div>
+
+      {/* Size Control Panel */}
+      {selectedSticker && (
+        <div className="absolute top-20 right-4 bg-blue-600 text-white p-4 rounded z-10 shadow-lg min-w-[300px]">
+          <p className={`text-sm font-bold mb-3 ${jetBrainsMono.className}`}>
+            📏 RESIZE: {selectedSticker}
+          </p>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                const sticker = stickers.find(s => s.id === selectedSticker);
+                if (sticker) handleSizeChange(selectedSticker, sticker.width - 20);
+              }}
+              className={`px-3 py-1 bg-blue-800 hover:bg-blue-900 rounded ${jetBrainsMono.className}`}
+            >
+              -
+            </button>
+            <input
+              type="range"
+              min="100"
+              max="400"
+              value={stickers.find(s => s.id === selectedSticker)?.width || 200}
+              onChange={(e) => handleSizeChange(selectedSticker, Number(e.target.value))}
+              className="flex-1"
+              style={{ cursor: 'pointer' }}
+            />
+            <button
+              onClick={() => {
+                const sticker = stickers.find(s => s.id === selectedSticker);
+                if (sticker) handleSizeChange(selectedSticker, sticker.width + 20);
+              }}
+              className={`px-3 py-1 bg-blue-800 hover:bg-blue-900 rounded ${jetBrainsMono.className}`}
+            >
+              +
+            </button>
+          </div>
+          <p className={`text-xs mt-2 ${jetBrainsMono.className}`}>
+            Width: {stickers.find(s => s.id === selectedSticker)?.width}px
+          </p>
+        </div>
+      )}
 
       {/* Stickers */}
       <div className="absolute top-0 left-0 w-full h-full pt-20">
         {stickers.map((sticker) => (
           <div
             key={sticker.id}
-            className="absolute cursor-move select-none"
+            className={`absolute cursor-move select-none ${selectedSticker === sticker.id ? 'ring-4 ring-blue-500' : ''}`}
             style={{
               left: sticker.x,
               top: sticker.y,
-              width: '280px',
-              height: '350px',
+              width: `${sticker.width}px`,
+              height: `${sticker.width * 1.25}px`,
               overflow: 'visible'
             }}
             onMouseDown={(e) => handleMouseDown(e, sticker.id)}
+            onClick={() => setSelectedSticker(sticker.id)}
           >
             <SimpleStickerPeel
               imageSrc={sticker.src}
-              width={280}
+              width={sticker.width}
               rotate={sticker.rotate}
               peelBackHoverPct={20}
               peelBackActivePct={40}
@@ -163,8 +225,8 @@ const StickerEditor: React.FC<StickerEditorProps> = ({ onSaveLayout, onCancel })
               lightingIntensity={0.12}
             />
             {/* Position indicator */}
-            <div className="absolute -top-8 left-0 bg-black text-white px-2 py-1 text-xs rounded">
-              {sticker.id}: ({Math.round(sticker.x)}, {Math.round(sticker.y)})
+            <div className="absolute -top-8 left-0 bg-black text-white px-2 py-1 text-xs rounded whitespace-nowrap">
+              {sticker.id}: ({Math.round(sticker.x)}, {Math.round(sticker.y)}) | {sticker.width}px
             </div>
           </div>
         ))}
