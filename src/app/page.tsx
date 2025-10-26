@@ -11,7 +11,7 @@ export default function Home() {
       album: "ASHER DELMEN",
       category: "SINGLE",
       label: "DESIGNED BY OSCAR",
-      year: "2025",
+      year: "25",
       image: "https://i.pinimg.com/736x/9f/10/23/9f1023c3785097536e164d3ef7ac9fb6.jpg",
       description: "Digital showcase for luxury jewelry – minimal, elegant design balancing visual storytelling with usability.",
       url: "https://www.asherdelman.com/"
@@ -22,7 +22,7 @@ export default function Home() {
       album: "PEDRO PURCHESE",
       category: "SINGLE",
       label: "DESIGNED BY OSCAR",
-      year: "2025",
+      year: "25",
       image: "https://i.pinimg.com/736x/bf/f0/4d/bff04d662db206377de801ec0bc42804.jpg",
       description: "Modern digital presence capturing urban tennis culture with clean lines and dynamic layouts.",
       url: "https://www.thenyctennisclub.com/"
@@ -33,7 +33,7 @@ export default function Home() {
       album: "ALI HAMDARD",
       category: "SINGLE",
       label: "DESIGNED BY OSCAR",
-      year: "2025",
+      year: "25",
       image: "https://i.pinimg.com/736x/90/cf/ec/90cfec4c5230978dba450909c676fd42.jpg",
       description: "Digital platform embodying movement and rhythm with fluid navigation and interactive elements.",
       url: "https://www.courtcycle.net/"
@@ -44,7 +44,7 @@ export default function Home() {
       album: "LUCA VOLPI",
       category: "SINGLE",
       label: "DESIGNED BY OSCAR SALERNO",
-      year: "2025",
+      year: "25",
       image: "https://i.pinimg.com/736x/8a/9d/06/8a9d06bccabc53834aa311fb3beb75f6.jpg",
       description: "Educational platform advancing learning for all through real experience and real impact in tutoring.",
       url: "https://www.integratorproject.org/"

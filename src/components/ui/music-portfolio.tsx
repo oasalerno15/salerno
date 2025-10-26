@@ -217,7 +217,7 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isIdle, setIsIdle] = useState(true);
-  const [xPosition, setXPosition] = useState(50); // Default 50% (centered)
+  const xPosition = 58; // Fixed at 58% position
   // Removed hoveredProject state - no longer using hover images
   
   const backgroundRef = useRef(null);
@@ -226,9 +226,6 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
   const idleAnimationRef = useRef<gsap.core.Timeline | null>(null);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
   const projectItemsRef = useRef<(HTMLLIElement | null)[]>([]);
-  
-  // Always show slider for positioning control
-  const showSlider = true;
 
   // Preload images
   useEffect(() => {
@@ -361,43 +358,6 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
 
   return (
     <>
-      {/* X-axis Position Slider for WEB DESIGN section */}
-      {showSlider && (
-        <div style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          zIndex: 9999,
-          background: 'white',
-          padding: '20px',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-          minWidth: '350px',
-          border: '2px solid #8A2BE2'
-        }}>
-          <div style={{ marginBottom: '10px', fontWeight: 'bold', fontSize: '16px', color: '#8A2BE2' }}>
-            WEB DESIGN X-Position Control
-          </div>
-          <div style={{ fontSize: '12px', color: '#666', marginBottom: '12px' }}>
-            Controls: WEB DESIGN title + project list
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <input
-              type="range"
-              min="1"
-              max="200"
-              value={xPosition}
-              onChange={(e) => setXPosition(Number(e.target.value))}
-              style={{ flex: 1, cursor: 'pointer' }}
-            />
-            <span style={{ minWidth: '60px', fontSize: '16px', fontWeight: 'bold' }}>{xPosition}%</span>
-          </div>
-          <div style={{ fontSize: '12px', color: '#666', marginTop: '8px' }}>
-            Current: left: {xPosition}%
-          </div>
-        </div>
-      )}
-
       <div 
         className="container"
       >
