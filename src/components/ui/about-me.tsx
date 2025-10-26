@@ -105,25 +105,26 @@ interface StickerPosition {
 
 const AboutMeStickers = ({ stickerPositions }: { stickerPositions: StickerPosition[] }) => {
   const stickers = stickerPositions.length > 0 ? stickerPositions : [
-    { src: "/sticker1.png", rotate: 15, x: 60, y: 80 },
-    { src: "/sticker2.png", rotate: -10, x: 280, y: 200 },
-    { src: "/sticker3.png", rotate: 20, x: 100, y: 350 },
-    { src: "/sticker4.png", rotate: -5, x: 380, y: 280 },
-    { src: "/sticker5.png", rotate: 25, x: 50, y: 550 },
-    { src: "/sticker6.png", rotate: -15, x: 320, y: 480 },
-    { src: "/sticker7.png", rotate: 10, x: 580, y: 100 },
-    { src: "/sticker8.png", rotate: -20, x: 480, y: 250 },
-    { src: "/sticker9.png", rotate: 5, x: 680, y: 400 },
-    { src: "/sticker10.png", rotate: -12, x: 540, y: 530 },
-    { src: "/sticker11.png", rotate: 18, x: 720, y: 280 },
+    { src: "/sticker1.png", rotate: 15, x: 80, y: 100 },
+    { src: "/sticker2.png", rotate: -10, x: 240, y: 220 },
+    { src: "/sticker3.png", rotate: 20, x: 120, y: 380 },
+    { src: "/sticker4.png", rotate: -5, x: 320, y: 320 },
+    { src: "/sticker5.png", rotate: 25, x: 60, y: 560 },
+    { src: "/sticker6.png", rotate: -15, x: 280, y: 500 },
+    { src: "/sticker7.png", rotate: 10, x: 440, y: 120 },
+    { src: "/sticker8.png", rotate: -20, x: 400, y: 280 },
+    { src: "/sticker9.png", rotate: 5, x: 520, y: 420 },
+    { src: "/sticker10.png", rotate: -12, x: 460, y: 560 },
+    { src: "/sticker11.png", rotate: 18, x: 560, y: 240 },
     { src: "/sticker12.png", rotate: 8, x: 200, y: 680 },
-    { src: "/sticker13.png", rotate: -25, x: 420, y: 620 }
+    { src: "/sticker13.png", rotate: -25, x: 380, y: 640 }
   ];
 
   return (
-    <div className="absolute left-0 top-0 w-full h-full z-20" style={{ 
+    <div className="absolute left-0 top-0 h-full z-20" style={{ 
       overflow: 'visible',
-      maxWidth: '50%'
+      maxWidth: '45%',
+      width: '650px'
     }}>
       {stickers.map((sticker, index) => (
         <div
