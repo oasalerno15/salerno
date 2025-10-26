@@ -43,10 +43,10 @@ const AboutMeHeader = () => {
   }, []);
 
   return (
-    <div ref={headerRef} className="absolute top-12 right-12 z-10">
+    <div ref={headerRef} className="absolute top-12 right-12 z-10 w-full max-w-xl">
       <motion.h2 
         ref={textRef}
-        className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-black leading-none text-right ${jetBrainsMono.className}`}
+        className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-black leading-none text-left ${jetBrainsMono.className}`}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
@@ -152,15 +152,9 @@ const AboutMeStickers = ({ stickerPositions }: { stickerPositions: StickerPositi
   );
 };
 
-// Corner Elements for About Me section
+// Corner Elements for About Me section (removed - now in Navigation component)
 const AboutMeCornerElements = () => {
-  return (
-    <aside className="corner-elements">
-      <div className="corner-item top-left">
-        OSCAR SALERNO PRODUCTIONS
-      </div>
-    </aside>
-  );
+  return null;
 };
 
 // Main About Me Component

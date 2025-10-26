@@ -395,19 +395,6 @@ const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
           aria-hidden="true"
         />
 
-        <aside className="corner-elements">
-          <nav className="corner-item top-right">
-            <a href="mailto:oscar@osalproductions.com">
-              Contact
-            </a> |
-            <a href="https://linkedin.com/in/oscarsalerno" target="_blank" rel="noopener">
-              LinkedIn
-            </a> |
-            <a href="mailto:oscar@osalproductions.com">
-              Email
-            </a>
-          </nav>
-        </aside>
       </div>
     </>
   );

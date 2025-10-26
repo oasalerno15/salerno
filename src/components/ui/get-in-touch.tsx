@@ -203,21 +203,9 @@ const GetInTouchHeader = () => {
 };
 
 
-// Corner Elements for Get in Touch section
+// Corner Elements for Get in Touch section (removed black squares)
 const GetInTouchCornerElements = () => {
-  return (
-    <aside className="corner-elements">
-      <div className="corner-item top-right">
-        <div className="corner-square"></div>
-      </div>
-      <div className="corner-item bottom-left">
-        LET&apos;S WORK TOGETHER
-      </div>
-      <div className="corner-item bottom-right">
-        <div className="corner-square"></div>
-      </div>
-    </aside>
-  );
+  return null;
 };
 
 // Main Get in Touch Component
