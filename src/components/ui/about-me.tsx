@@ -46,7 +46,7 @@ const AboutMeHeader = () => {
     <div ref={headerRef} className="absolute top-20 right-50 z-10">
       <motion.h2 
         ref={textRef}
-        className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-wide text-black leading-none ${jetBrainsMono.className}`}
+        className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-black leading-none ${jetBrainsMono.className}`}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
@@ -68,24 +68,24 @@ const AboutMeContent = () => {
         className={`text-black ${jetBrainsMono.className}`}
       >
         <div className="space-y-8">
-          <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed">
             Hi, I&apos;m Oscar Salerno, a web designer passionate about crafting minimal, 
             interactive websites that tell compelling stories through thoughtful design.
           </p>
           
-          <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed">
             I specialize in creating digital experiences that balance visual beauty 
             with functional simplicity, helping brands connect with their audiences 
             through clean, modern web design.
           </p>
           
-          <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed">
             Based in New York, I work with clients worldwide to bring their 
             digital visions to life through carefully crafted user experiences.
           </p>
           
           <div className="pt-6">
-            <p className="text-base md:text-lg lg:text-xl text-gray-600 uppercase tracking-wide">
+            <p className="text-sm md:text-base lg:text-lg text-gray-600 uppercase tracking-wide">
               Available for freelance projects
             </p>
           </div>
@@ -131,14 +131,14 @@ const AboutMeStickers = ({ stickerPositions }: { stickerPositions: StickerPositi
           style={{
             left: sticker.x,
             top: sticker.y,
-            width: '280px',
-            height: '350px',
+            width: '200px',
+            height: '250px',
             overflow: 'visible'
           }}
         >
           <SimpleStickerPeel
             imageSrc={sticker.src}
-            width={280}
+            width={200}
             rotate={sticker.rotate}
             peelBackHoverPct={20}
             peelBackActivePct={40}

@@ -207,7 +207,7 @@ export const LivingFluidHero = () => {
         className={`relative z-10 h-full flex flex-col items-center justify-center text-center px-4 ${inter.className}`}
       >
         <div className="overflow-hidden mb-4">
-          <h1 className={`text-8xl tracking-wide text-slate-900 dark:text-white md:text-9xl lg:text-[12rem] xl:text-[14rem] 2xl:text-[16rem] leading-[0.85] select-none font-bold ${jetBrainsMono.className}`}>
+          <h1 className={`text-7xl tracking-wide text-slate-900 dark:text-white md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] leading-[0.85] select-none font-bold ${jetBrainsMono.className}`}>
               {headline.split("").map((char, i) => (
                   <motion.span 
                     key={i} 
@@ -235,7 +235,7 @@ export const LivingFluidHero = () => {
           transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
           className="mt-6"
         >
-          <p className={`text-lg md:text-xl lg:text-2xl text-slate-900 dark:text-white tracking-wide font-medium ${jetBrainsMono.className}`}>
+          <p className={`text-base md:text-lg lg:text-xl text-slate-900 dark:text-white tracking-wide font-medium ${jetBrainsMono.className}`}>
             Web Designer crafting minimal, interactive websites
           </p>
         </motion.div>

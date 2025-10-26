@@ -138,7 +138,7 @@ const SocialLinks = () => {
       transition={{ duration: 1, ease: "easeOut", delay: 1.2 }}
       className="space-y-8"
     >
-      <h3 className={`text-2xl font-bold text-black ${jetBrainsMono.className}`}>
+      <h3 className={`text-xl font-bold text-black ${jetBrainsMono.className}`}>
         CONNECT
       </h3>
       <div className="space-y-6">
@@ -151,7 +151,7 @@ const SocialLinks = () => {
               href={link.url}
               target={link.name === 'EMAIL' || link.name === 'PHONE' ? '_self' : '_blank'}
               rel={link.name === 'EMAIL' || link.name === 'PHONE' ? '' : 'noopener noreferrer'}
-              className={`block text-lg hover:text-gray-600 transition-colors social-link ${jetBrainsMono.className}`}
+              className={`block text-base hover:text-gray-600 transition-colors social-link ${jetBrainsMono.className}`}
               whileHover={{ x: 10 }}
               transition={{ duration: 0.2 }}
             >
@@ -191,7 +191,7 @@ const GetInTouchHeader = () => {
     <div ref={headerRef} className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
       <motion.h2 
         ref={textRef}
-        className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-wide text-black leading-none text-center ${jetBrainsMono.className}`}
+        className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-black leading-none text-center ${jetBrainsMono.className}`}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
