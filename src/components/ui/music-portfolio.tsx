@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import { motion, useAnimation } from 'framer-motion';
@@ -63,44 +63,44 @@ const WebDesignHeader = () => {
   );
 };
 
-// Time Display Component
-const TimeDisplay = ({CONFIG={timeZone: "America/New_York", timeUpdateInterval: 1000}}: {CONFIG?: {timeZone?: string; timeUpdateInterval?: number}}) => {
-  const [time, setTime] = useState({ hours: '', minutes: '', dayPeriod: '' });
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: CONFIG.timeZone,
-        hour12: true,
-        hour: "numeric" as const,
-        minute: "numeric" as const,
-        second: "numeric" as const
-      };
-      const formatter = new Intl.DateTimeFormat("en-US", options);
-      const parts = formatter.formatToParts(now);
-      
-      setTime({
-        hours: parts.find(part => part.type === "hour")?.value || '',
-        minutes: parts.find(part => part.type === "minute")?.value || '',
-        dayPeriod: parts.find(part => part.type === "dayPeriod")?.value || ''
-      });
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, CONFIG.timeUpdateInterval);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <time className="corner-item bottom-right" id="current-time">
-      {time.hours}<span className="time-blink">:</span>{time.minutes} {time.dayPeriod}
-    </time>
-  );
-};
+// Time Display Component (not currently used)
+// const TimeDisplay = ({CONFIG={timeZone: "America/New_York", timeUpdateInterval: 1000}}: {CONFIG?: {timeZone?: string; timeUpdateInterval?: number}}) => {
+//   const [time, setTime] = useState({ hours: '', minutes: '', dayPeriod: '' });
+//
+//   useEffect(() => {
+//     const updateTime = () => {
+//       const now = new Date();
+//       const options: Intl.DateTimeFormatOptions = {
+//         timeZone: CONFIG.timeZone,
+//         hour12: true,
+//         hour: "numeric" as const,
+//         minute: "numeric" as const,
+//         second: "numeric" as const
+//       };
+//       const formatter = new Intl.DateTimeFormat("en-US", options);
+//       const parts = formatter.formatToParts(now);
+//       
+//       setTime({
+//         hours: parts.find(part => part.type === "hour")?.value || '',
+//         minutes: parts.find(part => part.type === "minute")?.value || '',
+//         dayPeriod: parts.find(part => part.type === "dayPeriod")?.value || ''
+//       });
+//     };
+//
+//     updateTime();
+//     const interval = setInterval(updateTime, CONFIG.timeUpdateInterval);
+//     return () => clearInterval(interval);
+//   }, [CONFIG.timeUpdateInterval, CONFIG.timeZone]);
+//
+//   return (
+//     <time className="corner-item bottom-right" id="current-time">
+//       {time.hours}<span className="time-blink">:</span>{time.minutes} {time.dayPeriod}
+//     </time>
+//   );
+// };
 
 // Project Item Component
-const ProjectItem = ({ project, index, onMouseEnter, onMouseLeave, isActive, isIdle }: {
+const ProjectItem = React.forwardRef<HTMLLIElement, {
          project: {
            id: number;
            artist: string;
@@ -112,30 +112,30 @@ const ProjectItem = ({ project, index, onMouseEnter, onMouseLeave, isActive, isI
            url?: string;
          };
   index: number;
-  onMouseEnter: (index: number, imageUrl: string) => void;
+  onMouseEnter: (index: number) => void;
   onMouseLeave: () => void;
   isActive: boolean;
   isIdle: boolean;
-}) => {
-  const itemRef = useRef<HTMLLIElement>(null);
-  const textRefs = {
-    artist: useRef<HTMLSpanElement>(null),
-    album: useRef<HTMLSpanElement>(null),
-    category: useRef<HTMLSpanElement>(null),
-    label: useRef<HTMLSpanElement>(null),
-    year: useRef<HTMLSpanElement>(null),
-  };
+}>(({ project, index, onMouseEnter, onMouseLeave, isActive, isIdle }, ref) => {
+  const textRefs = useMemo(() => ({
+    artist: React.createRef<HTMLSpanElement>(),
+    album: React.createRef<HTMLSpanElement>(),
+    category: React.createRef<HTMLSpanElement>(),
+    label: React.createRef<HTMLSpanElement>(),
+    year: React.createRef<HTMLSpanElement>(),
+  }), []);
 
   useEffect(() => {
     if (isActive) {
       // Animate text scramble on hover
       Object.entries(textRefs).forEach(([key, ref]) => {
         if (ref.current) {
+          const textValue = project[key as keyof typeof project];
           gsap.killTweensOf(ref.current);
           gsap.to(ref.current, {
             duration: 0.8,
             scrambleText: {
-              text: project[key as keyof typeof project],
+              text: String(textValue || ''),
               chars: "qwerty1337h@ck3r",
               revealDelay: 0.3,
               speed: 0.4
@@ -148,13 +148,14 @@ const ProjectItem = ({ project, index, onMouseEnter, onMouseLeave, isActive, isI
       // Reset text
       Object.entries(textRefs).forEach(([key, ref]) => {
         if (ref.current) {
+          const textValue = project[key as keyof typeof project];
           gsap.killTweensOf(ref.current);
-          ref.current.textContent = project[key as keyof typeof project];
+          ref.current.textContent = String(textValue || '');
         }
       });
       
     }
-  }, [isActive, project]);
+  }, [isActive, project, textRefs]);
 
   const handleClick = () => {
     if (project.url) {
@@ -164,9 +165,9 @@ const ProjectItem = ({ project, index, onMouseEnter, onMouseLeave, isActive, isI
 
   return (
     <li 
-      ref={itemRef}
+      ref={ref}
       className={`project-item ${isActive ? 'active' : ''} ${isIdle ? 'idle' : ''} ${project.url ? 'clickable' : ''}`}
-      onMouseEnter={() => onMouseEnter(index, project.image)}
+      onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={onMouseLeave}
       onClick={handleClick}
       data-image={project.image}
@@ -190,10 +191,12 @@ const ProjectItem = ({ project, index, onMouseEnter, onMouseLeave, isActive, isI
       
     </li>
   );
-};
+});
+
+ProjectItem.displayName = 'ProjectItem';
 
 // Main Portfolio Component
-const MusicPortfolio = ({PROJECTS_DATA=[], LOCATION={}, CALLBACKS={}, CONFIG={}, SOCIAL_LINKS={}}: {
+const MusicPortfolio = ({PROJECTS_DATA=[], CONFIG={}}: {
   PROJECTS_DATA?: Array<{
     id: number;
     artist: string;
@@ -210,16 +213,15 @@ const MusicPortfolio = ({PROJECTS_DATA=[], LOCATION={}, CALLBACKS={}, CONFIG={},
   SOCIAL_LINKS?: {spotify?: string; email?: string; x?: string};
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [backgroundImage, setBackgroundImage] = useState('');
   const [isIdle, setIsIdle] = useState(true);
   // Removed hoveredProject state - no longer using hover images
   
   const backgroundRef = useRef(null);
   const containerRef = useRef(null);
-  const idleTimerRef = useRef(null);
-  const idleAnimationRef = useRef(null);
-  const debounceRef = useRef(null);
-  const projectItemsRef = useRef([]);
+  const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const idleAnimationRef = useRef<gsap.core.Timeline | null>(null);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const projectItemsRef = useRef<(HTMLLIElement | null)[]>([]);
 
   // Preload images
   useEffect(() => {
@@ -230,7 +232,7 @@ const MusicPortfolio = ({PROJECTS_DATA=[], LOCATION={}, CALLBACKS={}, CONFIG={},
         img.src = project.image;
       }
     });
-  }, []);
+  }, [PROJECTS_DATA]);
 
   // Start idle animation
   const startIdleAnimation = useCallback(() => {
@@ -261,7 +263,7 @@ const MusicPortfolio = ({PROJECTS_DATA=[], LOCATION={}, CALLBACKS={}, CONFIG={},
     });
     
     idleAnimationRef.current = timeline;
-  }, []);
+  }, [PROJECTS_DATA.length]);
 
   // Stop idle animation
   const stopIdleAnimation = useCallback(() => {
@@ -289,7 +291,7 @@ const MusicPortfolio = ({PROJECTS_DATA=[], LOCATION={}, CALLBACKS={}, CONFIG={},
         startIdleAnimation();
       }
     }, CONFIG.idleDelay || 4000);
-  }, [activeIndex, startIdleAnimation]);
+  }, [activeIndex, startIdleAnimation, CONFIG.idleDelay]);
 
   // Stop idle timer
   const stopIdleTimer = useCallback(() => {
@@ -300,7 +302,7 @@ const MusicPortfolio = ({PROJECTS_DATA=[], LOCATION={}, CALLBACKS={}, CONFIG={},
   }, []);
 
   // Handle mouse enter on project
-  const handleProjectMouseEnter = useCallback((index, imageUrl) => {
+  const handleProjectMouseEnter = useCallback((index: number) => {
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
     }
@@ -377,7 +379,9 @@ const MusicPortfolio = ({PROJECTS_DATA=[], LOCATION={}, CALLBACKS={}, CONFIG={},
                 onMouseLeave={handleProjectMouseLeave}
                 isActive={activeIndex === index}
                 isIdle={isIdle}
-                ref={el => projectItemsRef.current[index] = el}
+                ref={(el: HTMLLIElement | null) => {
+                  projectItemsRef.current[index] = el;
+                }}
               />
             ))}
           </ul>

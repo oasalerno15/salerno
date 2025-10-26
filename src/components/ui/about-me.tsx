@@ -69,7 +69,7 @@ const AboutMeContent = () => {
       >
         <div className="space-y-8">
           <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
-            Hi, I'm Oscar Salerno, a web designer passionate about crafting minimal, 
+            Hi, I&apos;m Oscar Salerno, a web designer passionate about crafting minimal, 
             interactive websites that tell compelling stories through thoughtful design.
           </p>
           
@@ -96,7 +96,14 @@ const AboutMeContent = () => {
 };
 
 // Sticker Components for left side
-const AboutMeStickers = ({ stickerPositions, onEditStickers }: { stickerPositions: any[], onEditStickers: () => void }) => {
+interface StickerPosition {
+  src: string;
+  rotate: number;
+  x: number;
+  y: number;
+}
+
+const AboutMeStickers = ({ stickerPositions }: { stickerPositions: StickerPosition[] }) => {
   const stickers = stickerPositions.length > 0 ? stickerPositions : [
     { src: "/sticker1.png", rotate: 15, x: 20, y: 50 },
     { src: "/sticker2.png", rotate: -10, x: 150, y: 150 },
@@ -159,13 +166,9 @@ const AboutMeCornerElements = () => {
 // Main About Me Component
 const AboutMe = () => {
   const [showEditor, setShowEditor] = useState(false);
-  const [stickerPositions, setStickerPositions] = useState<any[]>([]);
+  const [stickerPositions, setStickerPositions] = useState<StickerPosition[]>([]);
 
-  const handleEditStickers = () => {
-    setShowEditor(true);
-  };
-
-  const handleSaveLayout = (positions: any[]) => {
+  const handleSaveLayout = (positions: StickerPosition[]) => {
     setStickerPositions(positions);
     setShowEditor(false);
     // Here you could also save to localStorage or send to a backend
@@ -192,7 +195,7 @@ const AboutMe = () => {
     <div className="relative w-full h-full overflow-visible">
       <AboutMeHeader />
       <AboutMeContent />
-      <AboutMeStickers stickerPositions={stickerPositions} onEditStickers={handleEditStickers} />
+      <AboutMeStickers stickerPositions={stickerPositions} />
       <AboutMeCornerElements />
     </div>
   );

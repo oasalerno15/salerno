@@ -8,7 +8,7 @@ interface ImageTrailProps {
   variant?: number;
 }
 
-const ImageTrail: React.FC<ImageTrailProps> = ({ items, variant = 1 }) => {
+const ImageTrail: React.FC<ImageTrailProps> = ({ items }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement[]>([]);
   const mousePos = useRef({ x: 0, y: 0 });

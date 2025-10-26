@@ -142,7 +142,7 @@ const SocialLinks = () => {
         CONNECT
       </h3>
       <div className="space-y-6">
-        {socialLinks.map((link, index) => (
+        {socialLinks.map((link) => (
           <motion.div
             key={link.name}
             className="mb-4"
@@ -211,7 +211,7 @@ const GetInTouchCornerElements = () => {
         <div className="corner-square"></div>
       </div>
       <div className="corner-item bottom-left">
-        LET'S WORK TOGETHER
+        LET&apos;S WORK TOGETHER
       </div>
       <div className="corner-item bottom-right">
         <div className="corner-square"></div>

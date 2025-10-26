@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 
 interface SimpleStickerPeelProps {
@@ -207,24 +208,30 @@ const SimpleStickerPeel: React.FC<SimpleStickerPeelProps> = ({
       <div className="sticker-container" ref={containerRef}>
         <div className="sticker-main">
           <div className="sticker-lighting">
-            <img
+            <Image
               src={imageSrc}
               alt=""
+              width={width}
+              height={width}
               className="sticker-image"
               draggable="false"
               onContextMenu={e => e.preventDefault()}
+              unoptimized
             />
           </div>
         </div>
 
         <div className="flap">
           <div className="flap-lighting">
-            <img
+            <Image
               src={imageSrc}
               alt=""
+              width={width}
+              height={width}
               className="flap-image"
               draggable="false"
               onContextMenu={e => e.preventDefault()}
+              unoptimized
             />
           </div>
         </div>
