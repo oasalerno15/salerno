@@ -142,22 +142,6 @@ const StickerEditor: React.FC<StickerEditorProps> = ({ onSaveLayout, onCancel })
         </div>
       </div>
 
-      {/* Instructions */}
-      <div className="absolute top-20 left-4 bg-purple-600 text-white p-4 rounded z-10 shadow-lg max-w-xs">
-        <p className={`text-sm font-bold ${jetBrainsMono.className}`}>
-          🎨 DRAG STICKERS TO POSITION THEM
-        </p>
-        <p className={`text-xs mt-2 ${jetBrainsMono.className}`}>
-          Click &amp; drag any sticker. Coordinates shown above each sticker.
-        </p>
-        <p className={`text-xs mt-1 ${jetBrainsMono.className}`}>
-          Click a sticker to select it and use the size slider below!
-        </p>
-        <p className={`text-xs mt-1 ${jetBrainsMono.className}`}>
-          Click SAVE LAYOUT when done to apply your changes!
-        </p>
-      </div>
-
       {/* Size Control Panel */}
       {selectedSticker && (
         <div className="absolute top-20 right-4 bg-blue-600 text-white p-4 rounded z-10 shadow-lg min-w-[300px]">
