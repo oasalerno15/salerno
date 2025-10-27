@@ -127,8 +127,8 @@ const SocialLinks = () => {
   const socialLinks = [
     { name: 'EMAIL', url: 'mailto:oscarasalerno@icloud.com', icon: '✉' },
     { name: 'PHONE', url: 'tel:+19292552086', icon: '📞' },
-    { name: 'INSTAGRAM', url: 'https://instagram.com/oscar', icon: '📷' },
-    { name: 'LINKEDIN', url: 'https://linkedin.com/in/oscar', icon: '💼' }
+    { name: 'INSTAGRAM', url: 'https://www.instagram.com/oscarasalerno/', icon: '📷' },
+    { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/oscar-salerno-406423341/', icon: '💼' }
   ];
 
   return (

@@ -41,7 +41,7 @@ const Navigation = () => {
           <div className={`flex gap-4 text-sm ${jetBrainsMono.className}`}>
             <a href="#contact" className="hover:opacity-70 transition-opacity">Contact</a>
             <span>|</span>
-            <a href="https://linkedin.com/in/oscarsalerno" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/oscar-salerno-406423341/" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">LinkedIn</a>
             <span>|</span>
             <a href="mailto:oscar@osalproductions.com" className="hover:opacity-70 transition-opacity">Email</a>
           </div>
