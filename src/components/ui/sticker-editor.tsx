@@ -27,19 +27,19 @@ interface StickerEditorProps {
 
 const StickerEditor: React.FC<StickerEditorProps> = ({ onSaveLayout, onCancel }) => {
   const [stickers, setStickers] = useState<StickerPosition[]>([
-    { id: 'sticker1', src: '/sticker1.png', x: 80, y: 100, rotate: 15, width: 200 },
-    { id: 'sticker2', src: '/sticker2.png', x: 240, y: 220, rotate: -10, width: 200 },
-    { id: 'sticker3', src: '/sticker3.png', x: 120, y: 380, rotate: 20, width: 200 },
-    { id: 'sticker4', src: '/sticker4.png', x: 320, y: 320, rotate: -5, width: 200 },
-    { id: 'sticker5', src: '/sticker5.png', x: 60, y: 560, rotate: 25, width: 200 },
-    { id: 'sticker6', src: '/sticker6.png', x: 280, y: 500, rotate: -15, width: 200 },
-    { id: 'sticker7', src: '/sticker7.png', x: 440, y: 120, rotate: 10, width: 200 },
-    { id: 'sticker8', src: '/sticker8.png', x: 400, y: 280, rotate: -20, width: 200 },
-    { id: 'sticker9', src: '/sticker9.png', x: 520, y: 420, rotate: 5, width: 200 },
+    { id: 'sticker1', src: '/sticker1.png', x: 80, y: 30, rotate: 15, width: 200 },
+    { id: 'sticker2', src: '/sticker2.png', x: 183, y: 101, rotate: -10, width: 200 },
+    { id: 'sticker3', src: '/sticker3.png', x: 10, y: 222, rotate: 20, width: 200 },
+    { id: 'sticker4', src: '/sticker4.png', x: 146, y: 141, rotate: -5, width: 376 },
+    { id: 'sticker5', src: '/sticker5.png', x: -38, y: 373, rotate: 25, width: 200 },
+    { id: 'sticker6', src: '/sticker6.png', x: 276, y: 398, rotate: -15, width: 200 },
+    { id: 'sticker7', src: '/sticker7.png', x: 440, y: 50, rotate: 10, width: 200 },
+    { id: 'sticker8', src: '/sticker8.png', x: 391, y: 210, rotate: -20, width: 200 },
+    { id: 'sticker9', src: '/sticker9.png', x: 432, y: 410, rotate: 5, width: 200 },
     { id: 'sticker10', src: '/sticker10.png', x: 460, y: 560, rotate: -12, width: 200 },
-    { id: 'sticker11', src: '/sticker11.png', x: 560, y: 240, rotate: 18, width: 200 },
-    { id: 'sticker12', src: '/sticker12.png', x: 200, y: 680, rotate: 8, width: 200 },
-    { id: 'sticker13', src: '/sticker13.png', x: 380, y: 640, rotate: -25, width: 200 }
+    { id: 'sticker11', src: '/sticker11.png', x: 524, y: 207, rotate: 18, width: 200 },
+    { id: 'sticker12', src: '/sticker12.png', x: 133, y: 354, rotate: 8, width: 200 },
+    { id: 'sticker13', src: '/sticker13.png', x: 568, y: 386, rotate: -25, width: 200 }
   ]);
 
   const [draggedSticker, setDraggedSticker] = useState<string | null>(null);
@@ -90,19 +90,19 @@ const StickerEditor: React.FC<StickerEditorProps> = ({ onSaveLayout, onCancel })
 
   const handleReset = () => {
     setStickers([
-      { id: 'sticker1', src: '/sticker1.png', x: 80, y: 100, rotate: 15, width: 200 },
-      { id: 'sticker2', src: '/sticker2.png', x: 240, y: 220, rotate: -10, width: 200 },
-      { id: 'sticker3', src: '/sticker3.png', x: 120, y: 380, rotate: 20, width: 200 },
-      { id: 'sticker4', src: '/sticker4.png', x: 320, y: 320, rotate: -5, width: 200 },
-      { id: 'sticker5', src: '/sticker5.png', x: 60, y: 560, rotate: 25, width: 200 },
-      { id: 'sticker6', src: '/sticker6.png', x: 280, y: 500, rotate: -15, width: 200 },
-      { id: 'sticker7', src: '/sticker7.png', x: 440, y: 120, rotate: 10, width: 200 },
-      { id: 'sticker8', src: '/sticker8.png', x: 400, y: 280, rotate: -20, width: 200 },
-      { id: 'sticker9', src: '/sticker9.png', x: 520, y: 420, rotate: 5, width: 200 },
+      { id: 'sticker1', src: '/sticker1.png', x: 80, y: 30, rotate: 15, width: 200 },
+      { id: 'sticker2', src: '/sticker2.png', x: 183, y: 101, rotate: -10, width: 200 },
+      { id: 'sticker3', src: '/sticker3.png', x: 10, y: 222, rotate: 20, width: 200 },
+      { id: 'sticker4', src: '/sticker4.png', x: 146, y: 141, rotate: -5, width: 376 },
+      { id: 'sticker5', src: '/sticker5.png', x: -38, y: 373, rotate: 25, width: 200 },
+      { id: 'sticker6', src: '/sticker6.png', x: 276, y: 398, rotate: -15, width: 200 },
+      { id: 'sticker7', src: '/sticker7.png', x: 440, y: 50, rotate: 10, width: 200 },
+      { id: 'sticker8', src: '/sticker8.png', x: 391, y: 210, rotate: -20, width: 200 },
+      { id: 'sticker9', src: '/sticker9.png', x: 432, y: 410, rotate: 5, width: 200 },
       { id: 'sticker10', src: '/sticker10.png', x: 460, y: 560, rotate: -12, width: 200 },
-      { id: 'sticker11', src: '/sticker11.png', x: 560, y: 240, rotate: 18, width: 200 },
-      { id: 'sticker12', src: '/sticker12.png', x: 200, y: 680, rotate: 8, width: 200 },
-      { id: 'sticker13', src: '/sticker13.png', x: 380, y: 640, rotate: -25, width: 200 }
+      { id: 'sticker11', src: '/sticker11.png', x: 524, y: 207, rotate: 18, width: 200 },
+      { id: 'sticker12', src: '/sticker12.png', x: 133, y: 354, rotate: 8, width: 200 },
+      { id: 'sticker13', src: '/sticker13.png', x: 568, y: 386, rotate: -25, width: 200 }
     ]);
     setSelectedSticker(null);
   };

@@ -106,19 +106,19 @@ interface StickerPosition {
 
 const AboutMeStickers = ({ stickerPositions }: { stickerPositions: StickerPosition[] }) => {
   const stickers = stickerPositions.length > 0 ? stickerPositions : [
-    { src: "/sticker1.png", rotate: 15, x: 80, y: 100, width: 200 },
-    { src: "/sticker2.png", rotate: -10, x: 240, y: 220, width: 200 },
-    { src: "/sticker3.png", rotate: 20, x: 120, y: 380, width: 200 },
-    { src: "/sticker4.png", rotate: -5, x: 320, y: 320, width: 200 },
-    { src: "/sticker5.png", rotate: 25, x: 60, y: 560, width: 200 },
-    { src: "/sticker6.png", rotate: -15, x: 280, y: 500, width: 200 },
-    { src: "/sticker7.png", rotate: 10, x: 440, y: 120, width: 200 },
-    { src: "/sticker8.png", rotate: -20, x: 400, y: 280, width: 200 },
-    { src: "/sticker9.png", rotate: 5, x: 520, y: 420, width: 200 },
+    { src: "/sticker1.png", rotate: 15, x: 80, y: 30, width: 200 },
+    { src: "/sticker2.png", rotate: -10, x: 183, y: 101, width: 200 },
+    { src: "/sticker3.png", rotate: 20, x: 10, y: 222, width: 200 },
+    { src: "/sticker4.png", rotate: -5, x: 146, y: 141, width: 376 },
+    { src: "/sticker5.png", rotate: 25, x: -38, y: 373, width: 200 },
+    { src: "/sticker6.png", rotate: -15, x: 276, y: 398, width: 200 },
+    { src: "/sticker7.png", rotate: 10, x: 440, y: 50, width: 200 },
+    { src: "/sticker8.png", rotate: -20, x: 391, y: 210, width: 200 },
+    { src: "/sticker9.png", rotate: 5, x: 432, y: 410, width: 200 },
     { src: "/sticker10.png", rotate: -12, x: 460, y: 560, width: 200 },
-    { src: "/sticker11.png", rotate: 18, x: 560, y: 240, width: 200 },
-    { src: "/sticker12.png", rotate: 8, x: 200, y: 680, width: 200 },
-    { src: "/sticker13.png", rotate: -25, x: 380, y: 640, width: 200 }
+    { src: "/sticker11.png", rotate: 18, x: 524, y: 207, width: 200 },
+    { src: "/sticker12.png", rotate: 8, x: 133, y: 354, width: 200 },
+    { src: "/sticker13.png", rotate: -25, x: 568, y: 386, width: 200 }
   ];
 
   return (
