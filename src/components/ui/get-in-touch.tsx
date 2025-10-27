@@ -21,6 +21,8 @@ const ContactForm = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -31,9 +33,27 @@ const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // You can add actual form submission logic here
+    setIsSubmitting(true);
+    
+    // Create mailto link with form data
+    const mailtoLink = `mailto:oscarasalerno@icloud.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )}`;
+    
+    // Open mail client
+    window.location.href = mailtoLink;
+    
+    // Show success animation
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setIsSubmitted(false);
+      }, 3000);
+    }, 500);
   };
 
   return (
@@ -112,10 +132,28 @@ const ContactForm = () => {
         <div className="pt-4">
           <button
             type="submit"
-            className={`px-8 py-4 bg-black text-white border border-black hover:bg-transparent hover:text-black transition-all duration-300 font-medium ${jetBrainsMono.className}`}
+            disabled={isSubmitting || isSubmitted}
+            className={`px-8 py-4 border border-black transition-all duration-300 font-medium ${jetBrainsMono.className} ${
+              isSubmitted 
+                ? 'bg-green-600 text-white border-green-600' 
+                : isSubmitting
+                ? 'bg-gray-400 text-white border-gray-400 cursor-wait'
+                : 'bg-black text-white hover:bg-transparent hover:text-black'
+            }`}
           >
-            SEND MESSAGE
+            {isSubmitted ? '✓ MESSAGE SENT!' : isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
           </button>
+          
+          {isSubmitted && (
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className={`text-green-600 text-sm mt-3 ${jetBrainsMono.className}`}
+            >
+              Thank you! Your message has been sent.
+            </motion.p>
+          )}
         </div>
       </form>
     </motion.div>
@@ -211,7 +249,7 @@ const GetInTouchCornerElements = () => {
 // Main Get in Touch Component
 const GetInTouch = () => {
   return (
-    <div className="relative w-full h-full overflow-visible bg-white get-in-touch-container">
+    <div id="contact" className="relative w-full h-full overflow-visible bg-white get-in-touch-container">
       <GetInTouchHeader />
       
       {/* Main content area */}

@@ -39,11 +39,20 @@ const Navigation = () => {
             OSCAR SALERNO PRODUCTIONS
           </div>
           <div className={`flex gap-4 text-sm ${jetBrainsMono.className}`}>
-            <a href="#contact" className="hover:opacity-70 transition-opacity">Contact</a>
+            <a 
+              href="#contact" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+              }}
+              className="hover:opacity-70 transition-opacity cursor-pointer"
+            >
+              Contact
+            </a>
             <span>|</span>
             <a href="https://www.linkedin.com/in/oscar-salerno-406423341/" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">LinkedIn</a>
             <span>|</span>
-            <a href="mailto:oscar@osalproductions.com" className="hover:opacity-70 transition-opacity">Email</a>
+            <a href="mailto:oscarasalerno@icloud.com" className="hover:opacity-70 transition-opacity">Email</a>
           </div>
         </div>
       </div>
