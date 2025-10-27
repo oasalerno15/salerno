@@ -189,28 +189,12 @@ const AboutMe = () => {
   }
 
   return (
-    <>
-      {/* Edit Stickers Button */}
-      <button
-        onClick={() => setShowEditor(true)}
-        className={`fixed bottom-20 right-4 z-50 px-6 py-3 bg-purple-600 text-white hover:bg-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl ${jetBrainsMono.className}`}
-        style={{
-          borderRadius: '8px',
-          fontSize: '14px',
-          fontWeight: 'bold',
-          letterSpacing: '0.5px'
-        }}
-      >
-        EDIT STICKERS 🎨
-      </button>
-
-      <div className="relative w-full h-full overflow-visible">
-        <AboutMeHeader />
-        <AboutMeContent />
-        <AboutMeStickers stickerPositions={stickerPositions} />
-        <AboutMeCornerElements />
-      </div>
-    </>
+    <div className="relative w-full h-full overflow-visible">
+      <AboutMeHeader />
+      <AboutMeContent />
+      <AboutMeStickers stickerPositions={stickerPositions} />
+      <AboutMeCornerElements />
+    </div>
   );
 };
 
